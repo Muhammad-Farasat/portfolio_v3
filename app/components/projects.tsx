@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, cubicBezier } from "framer-motion";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 
@@ -31,23 +32,78 @@ const projects = [
 ];
 
 export default function Projects() {
+
+    const containerVariants = {
+        initial: { width: 0, opacity: 0 },
+        animate: {
+            width: "auto",
+            opacity: 1,
+            transition: {
+                duration: 0.8,
+                ease: cubicBezier(0.76, 0, 0.24, 1), // Custom mechanical ease
+                delay: 0.2
+            }
+        }
+    };
+
+    // Variants for individual letters
+    const letterVariants = {
+        initial: { opacity: 0, y: 10 },
+        animate: (i: number) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: 0.8 + (i * 0.05), // Starts after brackets expand
+                duration: 0.3
+            }
+        })
+    };
+
+    const sectionTitle = "PROJECTS";
+
+
     return (
-        <section className="mt-24 ">
+        <section className="mt-40 ">
             {/* SECTION HEADER */}
             <div className="py-6 flex items-center justify-center relative overflow-hidden">
                 {/* Horizontal background lines to match design */}
                 <div className="absolute top-2 w-full border-t border-[#979797]" />
                 <div className="absolute bottom-2 w-full border-t border-[#979797]" />
 
-                <h2 className="text-4xl md:text-5xl font-squada flex items-center gap-x-2    uppercase bg-background px-8 z-10">
-                    <span className="font-squada text-7xl">
+                <motion.h2
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="flex items-center bg-background px-8 z-10 relative"
+                >
+                    {/* LEFT BRACKET */}
+                    <span className="font-squada text-6xl md:text-7xl leading-none">
                         [
                     </span>
-                    PROJECTS
-                    <span className="font-squada text-7xl">
+
+                    {/* EXPANDING CONTAINER */}
+                    <motion.span
+                        variants={containerVariants}
+                        className="overflow-hidden whitespace-nowrap flex items-center justify-center px-4 md:px-8"
+                    >
+                        <span className="text-4xl md:text-5xl font-squada uppercase flex">
+                            {sectionTitle.split("").map((char, i) => (
+                                <motion.span
+                                    key={i}
+                                    custom={i}
+                                    variants={letterVariants}
+                                >
+                                    {char}
+                                </motion.span>
+                            ))}
+                        </span>
+                    </motion.span>
+
+                    {/* RIGHT BRACKET */}
+                    <span className="font-squada text-6xl md:text-7xl leading-none">
                         ]
                     </span>
-                </h2>
+                </motion.h2>
             </div>
 
             {/* PROJECTS GRID */}
@@ -77,7 +133,7 @@ export default function Projects() {
                             <p className="mt-3 text-xs uppercase opacity-70 mb-2">TECH STACK: {project.stack}</p>
                             <Link
                                 href={project.link}
-                                className="text-xs flex items-center gap-1 "
+                                className="text-xs flex items-center gap-1 hover:gap-x-2 hover:pl-1 transition-all"
                             >
                                 View Site <span className="text-lg"><FiArrowUpRight className="font-bold" /></span>
                             </Link>

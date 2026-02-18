@@ -1,5 +1,7 @@
 "use client";
 
+import { cubicBezier, motion } from "framer-motion";
+
 const skillData = [
     {
         name: "React",
@@ -32,8 +34,39 @@ const skillData = [
 ];
 
 export default function Skills() {
+
+
+    const containerVariants = {
+        initial: { width: 0, opacity: 0 },
+        animate: {
+            width: "auto",
+            opacity: 1,
+            transition: {
+                duration: 0.8,
+                ease: cubicBezier(0.76, 0, 0.24, 1), // Custom mechanical ease
+                delay: 0.2
+            }
+        }
+    };
+
+    // Variants for individual letters
+    const letterVariants = {
+        initial: { opacity: 0, y: 10 },
+        animate: (i: number) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: 0.8 + (i * 0.05), // Starts after brackets expand
+                duration: 0.3
+            }
+        })
+    };
+
+    const sectionTitle = "SKILLS";
+
+
     return (
-        <section className="mt-36">
+        <section className="mt-36 mb-12">
             {/* SECTION HEADER WITH LEDGER LINES */}
             <div >
                 <div className="h-4 w-full" />
@@ -42,15 +75,40 @@ export default function Skills() {
                         <div className="border-t border-[#979797] w-full" />
                         <div className="border-t border-[#979797] w-full" />
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-squada flex items-center gap-x-4 uppercase bg-background px-8 z-10">
-                        <span className="font-squada text-7xl">
+                    <motion.h2
+                        initial="initial"
+                        whileInView="animate"
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="flex items-center bg-background px-8 z-10 relative"
+                    >
+                        {/* LEFT BRACKET */}
+                        <span className="font-squada text-6xl md:text-7xl leading-none">
                             [
                         </span>
-                        SKILLS
-                        <span className="font-squada text-7xl">
+
+                        {/* EXPANDING CONTAINER */}
+                        <motion.span
+                            variants={containerVariants}
+                            className="overflow-hidden whitespace-nowrap flex items-center justify-center px-4 md:px-8"
+                        >
+                            <span className="text-4xl md:text-5xl font-squada uppercase flex">
+                                {sectionTitle.split("").map((char, i) => (
+                                    <motion.span
+                                        key={i}
+                                        custom={i}
+                                        variants={letterVariants}
+                                    >
+                                        {char}
+                                    </motion.span>
+                                ))}
+                            </span>
+                        </motion.span>
+
+                        {/* RIGHT BRACKET */}
+                        <span className="font-squada text-6xl md:text-7xl leading-none">
                             ]
                         </span>
-                    </h2>
+                    </motion.h2>
                 </div>
                 <div className="h-4 w-full" />
             </div>

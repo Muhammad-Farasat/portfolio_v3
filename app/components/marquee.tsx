@@ -17,7 +17,7 @@ export default function Marquee() {
   const marqueeText = skills.join(" ++ ") + " ++ ";
 
   return (
-    <div className="absolute left-0 w-full overflow-hidden bg-[#211E1E] py-4 border-y border-black">
+    <div className="absolute left-0 w-full overflow-hidden bg-[#211E1E] py-8 border-y border-black">
       <motion.div
         className="flex whitespace-nowrap"
         animate={{ x: ["0%", "-50%"] }}

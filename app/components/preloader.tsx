@@ -37,7 +37,7 @@ export default function Preloader() {
           initial={{ y: 0 }}
           exit={{ y: "-100%" }}
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[9999] bg-[#0A0A0A] flex flex-col items-center justify-center font-mono p-6"
+          className="fixed inset-0 z-9999 bg-[#0A0A0A] flex flex-col items-center justify-center font-mono p-6"
         >
           {/* TOP DECORATION */}
           <div className="absolute top-10 left-10 text-[#39FF14] text-xs opacity-40 uppercase tracking-widest hidden md:block">
@@ -63,7 +63,7 @@ export default function Preloader() {
             </div>
 
             {/* BRUTALIST PROGRESS BAR */}
-            <div className="w-full h-4 border border-white/20 p-[2px]">
+            <div className="w-full h-4 border border-white/20 p-0.5">
               <motion.div 
                 className="h-full bg-[#39FF14]"
                 style={{ width: `${progress}%` }}

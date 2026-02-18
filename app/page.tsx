@@ -1,12 +1,25 @@
 "use client";
 
+import AboutTerminal from "./components/about";
+import AboutMarquee from "./components/aboutmarquee";
+import Experience from "./components/experience";
 import Hero from "./components/hero";
+import Marquee from "./components/marquee";
+import Preloader from "./components/preloader";
+import Projects from "./components/projects";
+import Skills from "./components/skills";
 
 
-  export default function Home() {
-    return (
+export default function Home() {
+  return (
     <>
-    <Hero />
+      <Preloader />
+      <Hero />
+      <Marquee />
+      <Projects />
+      <Experience />
+      <Skills />
+      <AboutTerminal />
     </>
-    );
-  }
+  );
+}

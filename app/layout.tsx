@@ -6,6 +6,7 @@ import "./globals.css";
 import Navbar from "@/app/components/navbar";
 
 import { Pixelify_Sans, Squada_One, Space_Mono } from "next/font/google";
+import Footer from "./components/footer";
 
 
 const pixelify = Pixelify_Sans({
@@ -19,7 +20,7 @@ const spaceMono = Space_Mono({
   variable: "--font-mono" 
 });
 
-const squada = Squada_One({
+const squadaOne = Squada_One({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-squadaOne"
@@ -31,19 +32,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${pixelify.variable} ${squada.variable} ${spaceMono.variable}`}>
+    <html lang="en" className={`${pixelify.variable} ${squadaOne.variable} ${spaceMono.variable}`}>
       <head>
         {/* Google Fonts Import */}
         <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=VT323&family=Inter:wght@900&display=swap" rel="stylesheet" />
       </head>
       <body className="bg-background text-foreground antialiased">
         {/* THE SIDE LINES: A centered container with borders */}
-        <div className="max-w-[1400px] mx-auto min-h-screen border-x border-[#979797] flex flex-col">
+        <div className="max-w-350 mx-auto min-h-screen border-x border-[#979797] flex flex-col">
           <Navbar />
-          <main className="flex-grow">
+          <main className="grow">
             {children}
           </main>
           {/* Your Footer would go here later */}
+          <Footer />
         </div>
       </body>
     </html>

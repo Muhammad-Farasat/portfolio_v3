@@ -5,7 +5,7 @@ export default function AboutMarquee() {
   const text = "ACCESSING CORE_SYSTEM_DATA /// BIOGRAPHY_LOG_v2.0 /// INITIALIZING WHOAMI /// ";
 
   return (
-    <div className="absolute left-0 z-50 w-full overflow-hidden bg-[#1A1A1A] py-3 border-y border-black/50">
+    <div className="absolute left-0 z-50 w-full overflow-hidden bg-[#1A1A1A] py-8 border-y border-black/50">
       <motion.div
         className="flex whitespace-nowrap"
         animate={{ x: ["0%", "-50%"] }}

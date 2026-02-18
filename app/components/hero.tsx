@@ -1,30 +1,32 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 export default function Hero() {
     return (
-        <section className="min-h-screen mb-4">
+        <section className="min-h-screen mb-12">
             <header className="w-full grid grid-cols-2 border-b border-[#979797] uppercase">
                 {/* Left Side: PORT_ */}
-                <div className=" border-r border-black/20 ">
-                    <h1 className="text-[16vw] text-center font-pixel tracking-tighter leading-none">
+                <div className=" border-r border-black/20 px-2 ">
+                    <h1 className="text-[16vw] text-center font-pixel tracking-wide leading-none">
                         PORT_
                     </h1>
                 </div>
 
                 {/* Right Side: FOLIO */}
                 <div className="">
-                    <h1 className="text-[16vw] text-center font-pixel tracking-tighter leading-none">
+                    <h1 className="text-[16vw] text-center font-pixel tracking-wide leading-none">
                         FOLIO
                     </h1>
                 </div>
             </header>
 
             {/* 1. THE MASSIVE HEADLINE */}
-            <div className="py-12 px-6 max-w-[1400px] mx-auto">
-                <h2 className="text-[19vw] text-center leading-[0.85] font-squada uppercase tracking-tighter">
+            <div className="py-12  max-w-350 mx-auto px-2 ">
+                <h2 className="text-[19vw]  leading-[0.85] font-squada uppercase tracking-tight">
                     I am Farasat
                 </h2>
-                <h2 className="text-[11.7vw] text-center leading-[0.85] font-squada uppercase tracking-tighter">
+                <h2 className="text-[11.7vw]  leading-[0.85] font-squada uppercase tracking-tight">
                     Full Stack Developer
                 </h2>
             </div>
@@ -39,22 +41,34 @@ export default function Hero() {
                 </div>
 
                 {/* RIGHT COLUMN: Status Card */}
-                <div className="flex items-center col-span-2 mr-16 justify-center bg-background">
+                <div className="flex items-center col-span-2 mr-12 justify-end bg-background">
                     <div
-                        className="relative w-full h-52 rounded-xl bg-[#dcd6c8] p-8 shadow-sm"
-                        style={{ clipPath: "polygon(0 0, 40% 0, 50% 24%, 100% 24%, 100% 100%, 0 100%)" }}
+                        className="relative w-[80%] h-52 rounded-2xl bg-[#dcd6c8] p-8 shadow-sm"
+                        style={{ clipPath: "polygon(0 0, 50% 0, 60% 16%, 100% 18%, 100% 100%, 0 100%)" }}
                     >
                         <div className="flex items-center gap-2 mb-6">
-                            <span className="font-mono text-xl text-[#484642] opacity-60 uppercase tracking-widest">Status</span>
-                            <div className="w-2 h-2 rounded-full bg-[#39FF14] animate-pulse" />
+                            <p className="font-mono relative text-xl text-[#484642]  uppercase tracking-widest">Status
+
+                                <span className="w-3 h-3 absolute top-0 -right-2 rounded-full bg-[#39FF14] animate-pulse" />
+                            </p>
                         </div>
 
                         <p className="font-mono text-[#484642] text-lg mb-12 ">
-                            {">"} I am currently available_
+                            {">"} I am currently available
+                            <motion.span
+                                animate={{ opacity: [1, 0, 1] }}
+                                transition={{
+                                    duration: 0.8,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                            >
+                                _
+                            </motion.span>
                         </p>
 
-                        <div className="flex justify-end">
-                            <button className="font-mono text-lg cursor-pointer flex items-center gap-x-2 hover:text-accent transition-colors">
+                        <div className="flex justify-end pr-4">
+                            <button className="font-mono text-lg hover:gap-x-4 hover:pr-1 cursor-pointer flex items-center gap-x-2 hover:text-accent transition-all">
                                 <span className="font-squada text-3xl ">[</span>
                                 CONTACT_ME
                                 <span className="font-squada text-3xl">]</span>

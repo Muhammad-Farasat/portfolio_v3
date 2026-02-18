@@ -2,13 +2,16 @@
 
 import { FiArrowUp, FiArrowUpRight } from "react-icons/fi";
 
+const cv = '/PDF/Farasat-Professional-Resume.pdf'
+
+
 export default function Footer() {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     return (
-        <footer className="border-t border-[#979797] font-mono mt-20">
+        <footer className="border-t border-[#979797] font-mono mt-12">
             {/* TOP SECTION: CONTACT DATA */}
             <div className="grid grid-cols-1 md:grid-cols-12">
                 {/* LEFT COLUMN: PROTOCOL */}
@@ -19,38 +22,40 @@ export default function Footer() {
 
                     <div className="flex flex-col gap-4 text-sm md:text-base">
                         <div className="flex flex-col md:flex-row md:gap-4">
-                            <span className="opacity-60 uppercase">EMAIL:</span>
+                            <span className=" uppercase">EMAIL:</span>
                             <a href="mailto:farasatkhan687@gmail.com" className="hover:underline">
                                 farasatkhan687@gmail.com
                             </a>
                         </div>
                         <div className="flex flex-col md:flex-row md:gap-4">
-                            <span className="opacity-60 uppercase">PHONE:</span>
+                            <span className=" uppercase">PHONE:</span>
                             <span>+92 315 2557056</span>
                         </div>
                     </div>
                 </div>
 
                 {/* RIGHT COLUMN: LINKS */}
-                <div className="md:col-span-3 p-8 md:p-12 flex flex-col gap-6 items-start">
+                <div className="md:col-span-3 px-4 py-8 flex flex-col gap-6 items-start">
                     <button
                         onClick={scrollToTop}
-                        className="group flex items-center gap-2 hover:text-accent transition-all duration-300"
+                        className="group flex items-center cursor-pointer hover:gap-x-4 text-xl gap-2 hover:text-accent transition-all duration-300"
                     >
-                        <span className="font-squada text-3xl">[</span>
-                        BACK_TO_TOP <FiArrowUp />
-                        <span className="font-squada text-3xl ">]</span>
+                        <span className="font-squada text-4xl">[</span>
+                        <p className="flex items-center gap-x-2">
+                            BACK_TO_TOP <FiArrowUp />
+                        </p>
+                        <span className="font-squada text-4xl ">]</span>
                     </button>
 
-                    <nav className="flex flex-col gap-4 uppercase text-sm font-bold mt-4">
+                    <nav className="flex flex-col gap-4 uppercase text-lg mt-4">
                         <a href="https://github.com/muhammad-Farasat" target="_blank" className="flex items-center gap-2 hover:opacity-50 transition-opacity">
-                            GITHUB <FiArrowUpRight/>
+                            GITHUB <FiArrowUpRight />
                         </a>
                         <a href="https://linkedin.com/in/muhammad-farasat1" target="_blank" className="flex items-center gap-2 hover:opacity-50 transition-opacity">
-                            LINKEDIN <FiArrowUpRight/>
+                            LINKEDIN <FiArrowUpRight />
                         </a>
-                        <a href="#" target="_blank" className="flex items-center gap-2 hover:opacity-50 transition-opacity">
-                            RESUME <FiArrowUpRight/>
+                        <a href={cv} download={cv} target="_blank" className="flex items-center gap-2 hover:opacity-50 transition-opacity">
+                            RESUME <FiArrowUpRight />
                         </a>
                     </nav>
                 </div>
