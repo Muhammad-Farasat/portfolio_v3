@@ -1,84 +1,188 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+
+    const [glitch, setGlitch] = useState(false);
+
+    // Trigger glitch once on mount (after loader)
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setGlitch(true);
+            // Remove class after animation completes so hover can re-trigger it
+            setTimeout(() => setGlitch(false), 1000);
+        }, 100);
+        return () => clearTimeout(timer);
+    }, []);
+
+    const handleHoverStart = () => {
+        setGlitch(true);
+    };
+
+    const handleHoverEnd = () => {
+        setTimeout(() => setGlitch(false), 800);
+    };
+
     return (
-        <section className="min-h-screen mb-12">
-            <header className="w-full grid grid-cols-2 border-b border-[#979797] uppercase">
-                {/* Left Side: PORT_ */}
-                <div className=" border-r border-black/20 px-2 ">
-                    <h1 className="text-[16vw] text-center font-pixel tracking-wide leading-none">
-                        PORT_
-                    </h1>
+        <>
+            <style>{`
+                @keyframes glitch-clip-1 {
+                    0%   { clip-path: inset(20% 0 60% 0); transform: translate(-4px, 0); opacity: 1; }
+                    20%  { clip-path: inset(55% 0 10% 0); transform: translate(4px, 0); }
+                    40%  { clip-path: inset(5%  0 80% 0); transform: translate(-3px, 2px); }
+                    60%  { clip-path: inset(70% 0 5%  0); transform: translate(3px, -2px); }
+                    80%  { clip-path: inset(30% 0 40% 0); transform: translate(-2px, 1px); }
+                    100% { clip-path: inset(0% 0 100% 0);  transform: translate(0, 0); opacity: 0; }
+                }
+
+                @keyframes glitch-clip-2 {
+                    0%   { clip-path: inset(60% 0 10% 0); transform: translate(5px, 0);  opacity: 1; }
+                    25%  { clip-path: inset(10% 0 70% 0); transform: translate(-5px, 0); }
+                    50%  { clip-path: inset(80% 0 5%  0); transform: translate(4px, -1px); }
+                    75%  { clip-path: inset(35% 0 45% 0); transform: translate(-4px, 1px); }
+                    100% { clip-path: inset(0%  0 100% 0); transform: translate(0, 0); opacity: 0; }
+                }
+
+                @keyframes glitch-rgb-shift {
+                    0%   { text-shadow: 3px 0 0 rgba(255,0,60,0.8), -3px 0 0 rgba(0,255,255,0.8); }
+                    20%  { text-shadow: -4px 0 0 rgba(255,0,60,0.8), 4px 0 0 rgba(0,255,255,0.8); }
+                    40%  { text-shadow: 2px 2px 0 rgba(255,0,60,0.8), -2px -2px 0 rgba(0,255,255,0.8); }
+                    60%  { text-shadow: -3px 1px 0 rgba(255,0,60,0.8), 3px -1px 0 rgba(0,255,255,0.8); }
+                    80%  { text-shadow: 1px -2px 0 rgba(255,0,60,0.8), -1px 2px 0 rgba(0,255,255,0.8); }
+                    100% { text-shadow: none; }
+                }
+
+                .glitch-wrapper {
+                    position: relative;
+                    display: contents;
+                }
+
+                .glitch-base {
+                    position: relative;
+                    display: inline-block;
+                }
+
+                .glitch-base.is-glitching {
+                    animation: glitch-rgb-shift 0.8s steps(1) forwards;
+                }
+
+                .glitch-base::before,
+                .glitch-base::after {
+                    content: attr(data-text);
+                    position: absolute;
+                    inset: 0;
+                    font-size: inherit;
+                    font-family: inherit;
+                    font-weight: inherit;
+                    letter-spacing: inherit;
+                    line-height: inherit;
+                    text-align: inherit;
+                    width: 100%;
+                    opacity: 0;
+                    pointer-events: none;
+                }
+
+                .glitch-base::before {
+                    color: rgba(255, 0, 60, 0.9);
+                    left: 0;
+                }
+
+                .glitch-base::after {
+                    color: rgba(0, 255, 255, 0.9);
+                    left: 0;
+                }
+
+                .glitch-base.is-glitching::before {
+                    animation: glitch-clip-1 0.8s steps(1) forwards;
+                }
+
+                .glitch-base.is-glitching::after {
+                    animation: glitch-clip-2 0.8s steps(1) 0.05s forwards;
+                }
+            `}</style>
+
+
+            <section className="min-h-screen mb-12">
+                <header onMouseEnter={handleHoverStart}
+                    onMouseLeave={handleHoverEnd} className="w-full grid grid-cols-2 border-b border-[#979797] uppercase">
+                    {/* Left Side: PORT_ */}
+                    <div className=" border-r border-black/20 px-2 ">
+                        <h1 className={`glitch-base text-[16vw] text-center font-pixel tracking-wide leading-none${glitch ? " is-glitching" : ""}`}
+                            data-text="PORT_">
+                            PORT_
+                        </h1>
+                    </div>
+
+                    {/* Right Side: FOLIO */}
+                    <div className="">
+                        <h1 className={`glitch-base text-[16vw] text-center font-pixel tracking-wide leading-none${glitch ? " is-glitching" : ""}`}
+                            data-text="FOLIO"
+                        > FOLIO
+                        </h1>
+                    </div>
+                </header>
+
+                {/* 1. THE MASSIVE HEADLINE */}
+                <div className="py-12  max-w-350 mx-auto px-2 ">
+                    <h2 className="text-[19vw]  leading-[0.85] font-squada uppercase tracking-tight">
+                        I am Farasat
+                    </h2>
+                    <h2 className="text-[11.7vw]  leading-[0.85] font-squada uppercase tracking-tight">
+                        Full Stack Developer
+                    </h2>
                 </div>
 
-                {/* Right Side: FOLIO */}
-                <div className="">
-                    <h1 className="text-[16vw] text-center font-pixel tracking-wide leading-none">
-                        FOLIO
-                    </h1>
-                </div>
-            </header>
+                {/* 2. THE CONTENT GRID (Stats + Status Box) */}
+                <div className="grid grid-cols-1 md:grid-cols-3">
 
-            {/* 1. THE MASSIVE HEADLINE */}
-            <div className="py-12  max-w-350 mx-auto px-2 ">
-                <h2 className="text-[19vw]  leading-[0.85] font-squada uppercase tracking-tight">
-                    I am Farasat
-                </h2>
-                <h2 className="text-[11.7vw]  leading-[0.85] font-squada uppercase tracking-tight">
-                    Full Stack Developer
-                </h2>
-            </div>
+                    {/* LEFT COLUMN: Stats */}
+                    <div className=" flex flex-col gap-6">
+                        <StatBox label="EXPERIENCE" value="2+" />
+                        <StatBox label="PROJECTS" value="10+" />
+                    </div>
 
-            {/* 2. THE CONTENT GRID (Stats + Status Box) */}
-            <div className="grid grid-cols-1 md:grid-cols-3">
+                    {/* RIGHT COLUMN: Status Card */}
+                    <div className="flex items-center col-span-2 mr-12 justify-end bg-background">
+                        <div
+                            className="relative w-[80%] h-52 rounded-2xl bg-[#dcd6c8] p-8 shadow-sm"
+                            style={{ clipPath: "polygon(0 0, 50% 0, 60% 16%, 100% 18%, 100% 100%, 0 100%)" }}
+                        >
+                            <div className="flex items-center gap-2 mb-6">
+                                <p className="font-mono relative text-xl text-[#484642]  uppercase tracking-widest">Status
 
-                {/* LEFT COLUMN: Stats */}
-                <div className=" flex flex-col gap-6">
-                    <StatBox label="EXPERIENCE" value="2+" />
-                    <StatBox label="PROJECTS" value="10+" />
-                </div>
+                                    <span className="w-3 h-3 absolute top-0 -right-2 rounded-full bg-[#39FF14] animate-pulse" />
+                                </p>
+                            </div>
 
-                {/* RIGHT COLUMN: Status Card */}
-                <div className="flex items-center col-span-2 mr-12 justify-end bg-background">
-                    <div
-                        className="relative w-[80%] h-52 rounded-2xl bg-[#dcd6c8] p-8 shadow-sm"
-                        style={{ clipPath: "polygon(0 0, 50% 0, 60% 16%, 100% 18%, 100% 100%, 0 100%)" }}
-                    >
-                        <div className="flex items-center gap-2 mb-6">
-                            <p className="font-mono relative text-xl text-[#484642]  uppercase tracking-widest">Status
-
-                                <span className="w-3 h-3 absolute top-0 -right-2 rounded-full bg-[#39FF14] animate-pulse" />
+                            <p className="font-mono text-[#484642] text-lg mb-12 ">
+                                {">"} I am currently available
+                                <motion.span
+                                    animate={{ opacity: [1, 0, 1] }}
+                                    transition={{
+                                        duration: 0.8,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }}
+                                >
+                                    _
+                                </motion.span>
                             </p>
-                        </div>
 
-                        <p className="font-mono text-[#484642] text-lg mb-12 ">
-                            {">"} I am currently available
-                            <motion.span
-                                animate={{ opacity: [1, 0, 1] }}
-                                transition={{
-                                    duration: 0.8,
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                }}
-                            >
-                                _
-                            </motion.span>
-                        </p>
-
-                        <div className="flex justify-end pr-4">
-                            <button className="font-mono text-lg hover:gap-x-4 hover:pr-1 cursor-pointer flex items-center gap-x-2 hover:text-accent transition-all">
-                                <span className="font-squada text-3xl ">[</span>
-                                CONTACT_ME
-                                <span className="font-squada text-3xl">]</span>
-                            </button>
+                            <div className="flex justify-end pr-4">
+                                <button className="font-mono text-lg hover:gap-x-4 hover:pr-1 cursor-pointer flex items-center gap-x-2 hover:text-accent transition-all">
+                                    <span className="font-squada text-3xl ">[</span>
+                                    CONTACT_ME
+                                    <span className="font-squada text-3xl">]</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-        </section>
+                </div>
+            </section>
+        </>
     );
 }
 
