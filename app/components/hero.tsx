@@ -106,7 +106,7 @@ export default function Hero() {
 
             <section className="min-h-screen mb-12">
                 <header onMouseEnter={handleHoverStart}
-                    onMouseLeave={handleHoverEnd} className="w-full grid grid-cols-2 border-b border-[#979797] uppercase">
+                    onMouseLeave={handleHoverEnd} className="cursor-default w-full grid grid-cols-2 border-b border-[#979797] uppercase">
                     {/* Left Side: PORT_ */}
                     <div className=" border-r border-black/20 px-2 ">
                         <h1 className={`glitch-base text-[16vw] text-center font-pixel tracking-wide leading-none${glitch ? " is-glitching" : ""}`}
@@ -125,7 +125,7 @@ export default function Hero() {
                 </header>
 
                 {/* 1. THE MASSIVE HEADLINE */}
-                <div className="py-12  max-w-350 mx-auto px-2 ">
+                <div className="py-12 cursor-default max-w-350 mx-auto px-2 ">
                     <h2 className="text-[19vw]  leading-[0.85] font-squada uppercase tracking-tight">
                         I am Farasat
                     </h2>

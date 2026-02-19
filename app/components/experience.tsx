@@ -4,13 +4,19 @@ import { cubicBezier, motion } from "framer-motion";
 
 const experienceData = [
     {
-        date: "2025 - PRESENT",
-        role: "MERN STACK DEVELOPER",
+        date: "MAY 2025 - PRESENT",
+        role: "Full STACK MERN DEVELOPER",
         level: "Mid-Level",
         company: "@DOTCLICK LLC",
     },
     {
-        date: "2024 - 2025",
+        date: "MAR 2025 - APR 2025",
+        role: "FRONTEND DEVELOPER",
+        level: "Intern",
+        company: "@SAMZ TECHNOLOGIES",
+    },
+    {
+        date: "FEB 2024 - JUL 2024",
         role: "FRONTEND DEVELOPER",
         level: "Intern",
         company: "@GLOBAL DEZIGNS",
