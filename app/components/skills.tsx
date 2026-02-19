@@ -1,35 +1,51 @@
 "use client";
 
 import { cubicBezier, motion } from "framer-motion";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { FaNodeJs, FaReact } from "react-icons/fa6";
+import { RiSupabaseFill } from "react-icons/ri";
+import { SiExpress, SiMongodb, SiNestjs, SiNextdotjs } from "react-icons/si";
 
 const skillData = [
     {
-        name: "React",
-        icon: (
-            <svg className="w-16 h-16 fill-accent" viewBox="0 0 24 24">
-                <path d="M12 1.5C6.75 1.5 2.5 5.75 2.5 11s4.25 9.5 9.5 9.5 9.5-4.25 9.5-9.5-4.25-9.5-9.5-9.5zm0 17c-4.14 0-7.5-3.36-7.5-7.5s3.36-7.5 7.5-7.5 7.5 3.36 7.5 7.5-3.36 7.5-7.5 7.5z" />
-                <circle cx="12" cy="11" r="2" />
-            </svg>
-        ),
-        description: "I specialize in React 18 and Next.js, focus on optimizing Web Vitals and building reusable design systems that scale globally.",
+        name: "React JS",
+        icon: <FaReact />,
+        description: "I build performant React 18 apps with hooks, context, and reusable component systems — focused on clean architecture and smooth UX.",
+    },
+    {
+        name: "Next JS",
+        icon: <SiNextdotjs />,
+        description: "I leverage Next.js for SSR, SSG, and App Router patterns — optimizing Web Vitals, routing, and full-stack delivery at scale.",
     },
     {
         name: "Node JS",
-        icon: (
-            <svg className="w-16 h-16 fill-accent" viewBox="0 0 24 24">
-                <path d="M12 2L4.5 6.34v8.66L12 19.34l7.5-4.34v-8.66L12 2zm5.5 12.06L12 16.94l-5.5-2.88V7.94L12 5.06l5.5 2.88v6.12z" />
-            </svg>
-        ),
-        description: "I specialize in React 18 and Next.js, focus on optimizing Web Vitals and building reusable design systems that scale globally.",
+        icon: <FaNodeJs />,
+        description: "I build fast, event-driven backend services with Node.js — handling REST APIs, file systems, and real-time features efficiently.",
     },
     {
         name: "Mongo DB",
-        icon: (
-            <svg className="w-16 h-16 fill-accent" viewBox="0 0 24 24">
-                <path d="M12 2C7.58 2 4 5.58 4 10c0 5.5 5 10 8 12 3-2 8-6.5 8-12 0-4.42-3.58-8-8-8zm0 14c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z" />
-            </svg>
-        ),
-        description: "I specialize in React 18 and Next.js, focus on optimizing Web Vitals and building reusable design systems that scale globally.",
+        icon: <SiMongodb />,
+        description: "I design flexible NoSQL schemas with MongoDB — managing aggregations, indexing, and data modeling for document-heavy applications.",
+    },
+    {
+        name: "PostgreSQL",
+        icon: <BiLogoPostgresql />,
+        description: "I work with PostgreSQL for relational data modeling — writing complex queries, managing migrations, and ensuring data integrity.",
+    },
+    {
+        name: "Supabase",
+        icon: <RiSupabaseFill />,
+        description: "I use Supabase as a Firebase alternative — integrating auth, real-time subscriptions, and row-level security with PostgreSQL under the hood.",
+    },
+    {
+        name: "Express JS",
+        icon: <SiExpress />,
+        description: "I build lightweight, modular REST APIs with Express — structuring middleware, routing, and error handling for production-ready backends.",
+    },
+    {
+        name: "Nest JS",
+        icon: <SiNestjs />,
+        description: "I architect scalable server-side apps with NestJS — using decorators, dependency injection, and modular design for enterprise-grade APIs.",
     },
 ];
 
@@ -115,7 +131,7 @@ export default function Skills() {
 
             {/* SKILLS GRID */}
             <div className=" mx-auto px-6 mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {skillData.map((skill, index) => (
                         <div
                             key={index}
@@ -125,7 +141,7 @@ export default function Skills() {
                             }}
                         >
                             {/* ICON AREA */}
-                            <div className="mb-6 text-[#39FF14] filter drop-shadow-[0_0_8px_rgba(57,255,20,0.4)]">
+                            <div className="mb-6  text-7xl ">
                                 {skill.icon}
                             </div>
 
