@@ -171,11 +171,14 @@ export default function Hero() {
                             </p>
 
                             <div className="flex justify-end pr-4">
-                                <button className="font-mono text-lg hover:gap-x-4 hover:pr-1 cursor-pointer flex items-center gap-x-2 hover:text-accent transition-all">
-                                    <span className="font-squada text-3xl ">[</span>
-                                    CONTACT_ME
-                                    <span className="font-squada text-3xl">]</span>
-                                </button>
+                                <a  href="https://mail.google.com/mail/?view=cm&to=farasatkhan687@gmail.com&su=Hey, let's work together!"
+   >
+                                    <button className="font-mono text-lg hover:gap-x-4 hover:pr-1 cursor-pointer flex items-center gap-x-2 hover:text-accent transition-all">
+                                        <span className="font-squada text-3xl ">[</span>
+                                        CONTACT_ME
+                                        <span className="font-squada text-3xl">]</span>
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
