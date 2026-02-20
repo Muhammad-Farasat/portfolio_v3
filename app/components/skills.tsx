@@ -92,10 +92,11 @@ export default function Skills() {
                         <div className="border-t border-[#979797] w-full" />
                     </div>
                     <motion.h2
-                        initial="initial"
+                        initial="initial" whileHover={{ gap: "1rem" }}
+
                         whileInView="animate"
                         viewport={{ once: true, margin: "-100px" }}
-                        className="flex items-center bg-background px-8 z-10 relative"
+                        className="flex items-center cursor-default bg-background px-8 z-10 relative"
                     >
                         {/* LEFT BRACKET */}
                         <span className="font-squada text-6xl md:text-7xl leading-none">

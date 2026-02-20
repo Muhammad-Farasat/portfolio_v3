@@ -67,8 +67,10 @@ export default function Experience() {
                     <motion.h2
                         initial="initial"
                         whileInView="animate"
+
+                        whileHover={{ gap: "1rem" }}
                         viewport={{ once: true, margin: "-100px" }}
-                        className="flex items-center bg-background px-8 z-10 relative"
+                        className="flex items-center cursor-default bg-background px-8 z-10 relative"
                     >
                         {/* LEFT BRACKET */}
                         <span className="font-squada text-6xl md:text-7xl leading-none">
