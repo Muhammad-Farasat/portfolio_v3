@@ -2,6 +2,32 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Single digit roller slot
+function DigitRoller({ digit, id }: { digit: string; id: string }) {
+  // unified wrapper (even for "%") with a fixed, font-relative height so
+  // entering/exiting digits don't cause layout jitter.
+  return (
+    <span
+      className="inline-block overflow-hidden relative align-bottom"
+      style={{  lineHeight: "1em" }}
+    >
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          key={`${id}-${digit}`} // keyed on BOTH position + digit value
+          initial={{ y: "100%" }}
+          animate={{ y: "0%" }}
+          exit={{ y: "-100%" }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="block text-white text-4xl md:text-8xl font-bebas tracking-tighter leading-none"
+          style={{ lineHeight: "1em" }}
+        >
+          {digit}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
+
 export default function Preloader() {
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
@@ -11,12 +37,12 @@ export default function Preloader() {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          setTimeout(() => setIsVisible(false), 500); // Wait a bit at 100%
+          setTimeout(() => setIsVisible(false), 600);
           return 100;
         }
-        return prev + Math.floor(Math.random() * 15) + 1; // Random jumps for "tech" feel
+        return Math.min(prev + Math.floor(Math.random() * 4) + 1, 100);
       });
-    }, 150);
+    }, 80);
 
     return () => clearInterval(timer);
   }, []);
@@ -29,6 +55,9 @@ export default function Preloader() {
     "CONNECTING_TO_BIO_DATABASE...",
     "ESTABLISHING_NEURAL_LINK...",
   ];
+
+  // Pad to always 3 digits so slots don't shift layout e.g. "007", "042", "100"
+  const digits = String(progress).padStart(3, "0").split("");
 
   return (
     <AnimatePresence>
@@ -52,11 +81,14 @@ export default function Preloader() {
               ))}
             </div>
 
-            {/* PROGRESS PERCENTAGE */}
+            {/* ROLLING PROGRESS PERCENTAGE */}
             <div className="flex items-baseline justify-between mb-2">
-              <span className="text-white text-4xl md:text-8xl font-bebas tracking-tighter">
-                {progress}%
-              </span>
+              <div className="flex items-baseline gap-0">
+                {digits.map((digit, i) => (
+                  <DigitRoller key={i} id={String(i)} digit={digit} />
+                ))}
+                <DigitRoller  digit="%" id="percent" />
+              </div>
               <span className="text-[#39FF14] text-xs animate-pulse">
                 [ LOADING... ]
               </span>
@@ -64,7 +96,7 @@ export default function Preloader() {
 
             {/* BRUTALIST PROGRESS BAR */}
             <div className="w-full h-4 border border-white/20 p-0.5">
-              <motion.div 
+              <motion.div
                 className="h-full bg-[#39FF14]"
                 style={{ width: `${progress}%` }}
               />
