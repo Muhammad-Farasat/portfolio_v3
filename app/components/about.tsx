@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import AboutMarquee from "./aboutmarquee";
+import { Marquee } from "./marquee";
 
 export default function AboutTerminal() {
   // We use a ref to define the "fence" the terminal can be dragged in
@@ -9,7 +10,12 @@ export default function AboutTerminal() {
 
   return (
     <>
-      <AboutMarquee />
+      <Marquee text={[
+        "ACCESSING CORE_SYSTEM_DATA",
+        "BIOGRAPHY_LOG_v2.0",
+        "INITIALIZING WHOAMI",
+        ""
+      ]} about={true} />
 
       <section
         ref={constraintsRef}

@@ -1,37 +1,45 @@
 "use client";
-import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, useAnimationControls } from "framer-motion";
 
-const skills = [
-  "FRONTEND",
-  "BACKEND",
-  "REACT",
-  "NEXT",
-  "NEST",
-  "POSTGRES",
-  "MONGO DB",
-  "SUPABASE",
-];
 
-export default function Marquee() {
-  // Create a string of skills separated by ++
-  const marqueeText = skills.join(" ++ ") + " ++ ";
+export const Marquee = ({text, about}: {text: string[], about?: boolean}) => {
+  
+  const SEP = about ? "\u00A0//\u00A0" :  "\u00A0\u00A0++\u00A0\u00A0";
+  
+  const marqueeText = SEP + text.join(SEP);
+
+  const ref = useRef<HTMLSpanElement>(null);
+  const controls = useAnimationControls();
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    const width = ref.current.offsetWidth; // exact pixel width of one copy
+
+    controls.start({
+      x: [0, -width],
+      transition: {
+        repeat: Infinity,
+        ease: "linear",
+        duration: 20,
+      },
+    });
+  }, [controls]);
 
   return (
     <div className="absolute left-0 w-full overflow-hidden bg-[#211E1E] py-8 border-y border-black">
-      <motion.div
-        className="flex whitespace-nowrap"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          repeat: Infinity,
-          ease: "linear",
-          duration: 20, // Adjust speed here (higher = slower)
-        }}
-      >
-        {/* Render the text twice to create the infinite loop effect */}
-        <span className="text-white font-mono text-xl md:text-2xl uppercase tracking-widest px-4">
+      <motion.div className="flex whitespace-nowrap w-max" animate={controls}>
+        <span
+          ref={ref}
+          className="text-white font-mono text-xl md:text-2xl uppercase tracking-widest shrink-0"
+        >
           {marqueeText}
-          {marqueeText}
-          {marqueeText}
+        </span>
+        <span
+          aria-hidden
+          className="text-white font-mono text-xl md:text-2xl uppercase tracking-widest shrink-0"
+        >
           {marqueeText}
         </span>
       </motion.div>
