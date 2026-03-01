@@ -104,14 +104,14 @@ export default function Projects() {
             </div>
 
             {/* PROJECTS GRID */}
-            <div className="grid grid-cols-1 md:grid-cols-2 px-2 gap-4 mt-4">
+            <div className="grid grid-cols-2 md:grid-cols-2 px-2 gap-4 mt-4">
                 {projects.map((project) => (
                     <div
                         key={project.id}
                         className="group relative flex flex-col bg-[#D9D9D9] overflow-hidden"
                     >
                         {/* ID TAG */}
-                        <div className="absolute top-0 left-0 bg-[#808080] text-white font-squada text-sm px-3 py-1 uppercase tracking-wide z-10">
+                        <div className="absolute top-0 left-0 bg-[#808080] text-white font-squada text-sm max-sm:text-xs px-3 max-sm:px-2 py-1 uppercase tracking-wide z-10">
                             {project.id}
                         </div>
 
@@ -128,17 +128,17 @@ export default function Projects() {
                         </div>
 
                         {/* BOTTOM INFO */}
-                        <div className="px-4 py-4 font-mono relative">
+                        <div className="px-4 max-sm:px-2 py-4 font-mono relative">
                             <div className="absolute top-0 left-0 w-full border-t border-[#979797]" />
-                            <p className="text-xs uppercase opacity-70 mb-2 mt-1">{project.description}</p>
+                            <p className="text-xs max-sm:text-[8px]  uppercase opacity-70 mb-2 mt-1">{project.description}</p>
 
-                            <p className="text-xs uppercase opacity-70 mb-2">TECH STACK: {project.stack}</p>
+                            <p className="text-xs max-sm:text-[8px] uppercase opacity-70 mb-2">TECH STACK: <br className="max-sm:flex hidden " /> {project.stack}</p>
 
                             <Link
                                 href={project.link}
-                                className="text-xs flex items-center gap-1 hover:gap-x-2 hover:pl-1 transition-all"
+                                className="text-xs max-sm:text-[8px] flex items-center gap-1 hover:gap-x-2 hover:pl-1 transition-all"
                             >
-                                View Site <FiArrowUpRight className="text-lg font-bold" />
+                                View Site <FiArrowUpRight className="text-lg max-sm:text-[8px] font-bold" />
                             </Link>
                         </div>
                     </div>

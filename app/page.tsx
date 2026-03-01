@@ -14,21 +14,24 @@ export default function Home() {
   return (
     <>
       <Preloader />
-      <Hero />
-      <Marquee text={ [
-        "FRONTEND",
-        "BACKEND",
-        "REACT",
-        "NEXT",
-        "NEST",
-        "POSTGRES",
-        "MONGO DB",
-        "SUPABASE",
-      ]} />
-      <Projects />
-      <Experience />
-      <Skills />
-      <AboutTerminal />
+      {/* <section className="container"> */}
+
+        <Hero />
+        <Marquee text={[
+          "FRONTEND",
+          "BACKEND",
+          "REACT",
+          "NEXT",
+          "NEST",
+          "POSTGRES",
+          "MONGO DB",
+          "SUPABASE",
+        ]} />
+        <Projects />
+        <Experience />
+        <Skills />
+        <AboutTerminal />
+      {/* </section> */}
     </>
   );
 }

@@ -132,7 +132,7 @@ export default function Skills() {
 
             {/* SKILLS GRID */}
             <div className=" mx-auto px-6 mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 max-md:grid-cols-3 md:grid-cols-3 gap-8">
                     {skillData.map((skill, index) => (
                         <div
                             key={index}
@@ -142,17 +142,17 @@ export default function Skills() {
                             }}
                         >
                             {/* ICON AREA */}
-                            <div className="mb-6  text-7xl ">
+                            <div className="mb-6  text-7xl max-md:text-4xl md:text-4xl ">
                                 {skill.icon}
                             </div>
 
                             {/* TITLE */}
-                            <h3 className="text-3xl font-squada uppercase mb-8 tracking-tight">
+                            <h3 className="text-3xl font-squada max-md:text-xl md:text-xl uppercase mb-8 tracking-tight">
                                 {skill.name}
                             </h3>
 
                             {/* DESCRIPTION */}
-                            <p className="font-mono text-sm leading-relaxed text-left self-start opacity-80">
+                            <p className="font-mono text-sm max-md:text-xs md:text-xs leading-relaxed text-left self-start opacity-80">
                                 {"> "} {skill.description}
                             </p>
                         </div>

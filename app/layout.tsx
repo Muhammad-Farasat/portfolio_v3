@@ -41,7 +41,7 @@ export default function RootLayout({
         <meta name="title" content="Farasat portfolio" />
       </head>
       <body className="bg-background text-foreground antialiased">
-        <p className="fixed top-96 -rotate-90 left-0 opacity-50 text-xs font-mono ">VERSION.3</p>
+        <p className="fixed max-sm:hidden max-md:hidden top-96 -rotate-90 left-0 opacity-50 text-xs font-mono ">VERSION.3</p>
         {/* THE SIDE LINES: A centered container with borders */}
         <div className="max-w-350 mx-auto min-h-screen border-x border-[#979797] flex flex-col">
           <Navbar />
@@ -52,7 +52,7 @@ export default function RootLayout({
           <Footer />
         </div>
 
-        <p className="fixed top-96 -rotate-90 right-0 opacity-50 text-xs font-mono ">VERSION.3</p>
+        <p className="fixed max-sm:hidden max-md:hidden top-96 -rotate-90 right-0 opacity-50 text-xs font-mono ">VERSION.3</p>
 
       </body>
     </html>
